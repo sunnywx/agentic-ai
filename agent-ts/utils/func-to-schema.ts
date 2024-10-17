@@ -1,6 +1,32 @@
-// const util = require('util');
 import util from 'util'
 import * as acorn from 'acorn'
+
+/*
+llm function calling
+
+convert any function into following structure
+
+@see: https://platform.openai.com/docs/guides/function-calling
+
+```json
+{
+    "name": "get_delivery_date",
+    "description": "Get the delivery date for a customer's order. Call this whenever you need to know the delivery date, for example when a customer asks 'Where is my package'",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "order_id": {
+                "type": "string",
+                "description": "The customer's order ID.",
+            },
+        },
+        "required": ["order_id"],
+        "additionalProperties": false,
+    }
+}
+```
+
+*/
 
 export function functionToJsonSchema(fx: Function) {
   // Get the function's string representation
